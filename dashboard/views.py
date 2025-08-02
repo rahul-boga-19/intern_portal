@@ -3,9 +3,12 @@ from django.http import JsonResponse
 from pymongo import MongoClient
 
 
-client = MongoClient("mongodb://localhost:27017/") 
+import os
+
+client = MongoClient(os.getenv("MONGO_URI"))
 db = client['intern_portal']
 collection = db['interns']
+
 
 def index(request):
     return render(request, 'dashboard/index.html')
